@@ -1,0 +1,85 @@
+/* --- Variables globales --- */
+:root {
+  --sl-content-width: 85rem; /* Largeur confortable pour le contenu */
+}
+
+/* --- Layout Principal (Sidebar + Contenu) --- */
+
+/* Centre l'ensemble de la structure sur la page */
+.main-frame {
+  display: flex;
+  justify-content: center !important;
+  width: 100% !important;
+}
+
+/* Gère la zone de contenu principale */
+.main-pane {
+  max-width: var(--sl-content-width) !important;
+  width: 100% !important;
+  margin-inline: auto !important;
+}
+
+/* Sidebar droite (Table des matières) plus compacte */
+.right-sidebar {
+  width: 14rem !important;
+}
+
+.right-sidebar starlight-toc nav {
+  font-size: 0.8rem !important;
+  padding-left: 0.5rem !important;
+}
+
+.right-sidebar-container {
+  border-inline-start: 1px solid var(--sl-color-gray-6) !important;
+}
+
+/* --- Pages de contenu (Docs, News, Articles) --- */
+@media (min-width: 72rem) {
+  /* Si ce n'est pas la home, on centre le conteneur par rapport à la sidebar */
+  body:not(:has(.hero)) .sl-container {
+    margin-inline: auto !important;
+    max-width: var(--sl-content-width) !important;
+  }
+
+  body:not(:has(.hero)) .content-panel {
+    padding-inline: 2rem !important;
+  }
+}
+
+/* --- Home Page (Splash) --- */
+body:has(.hero) main {
+  max-width: 80rem !important;
+  width: 100% !important;
+  display: block !important;
+  margin-inline: auto !important;
+  padding-inline: 1.5rem;
+}
+
+body:has(.hero) .card-grid {
+  gap: 1.5rem;
+}
+
+/* --- Cartes Interactives (Style TBZR/Stéphane Robert) --- */
+.card {
+  background-color: var(--sl-color-bg-elevated) !important;
+  border: 1px solid var(--sl-color-gray-5) !important;
+  border-radius: 0.75rem !important;
+  transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out !important;
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  border-color: var(--sl-color-accent) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+.card .icon {
+  color: var(--sl-color-accent) !important;
+}
+
+/* --- Ajustements Typo --- */
+.content-panel h2 {
+  margin-top: 1.5rem !important;
+}
