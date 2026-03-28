@@ -2,16 +2,14 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
-// https://astro.build/config
 export default defineConfig({
-	redirects: {
+    redirects: {
         '/': '/fr/'
     },
     integrations: [
         starlight({
             title: 'TBZR Blog',
-            // On définit ici les langues supportées
-            defaultLocale: 'fr', 
+            defaultLocale: 'fr',
             locales: {
                 fr: {
                     label: 'Français',
@@ -21,6 +19,10 @@ export default defineConfig({
                     label: 'English',
                     lang: 'en-US',
                 },
+            },
+            // Add the override here
+            components: {
+                LanguageSelect: './src/components/LanguageSelect.astro',
             },
             social: [
                 { icon: 'github', label: 'GitHub', href: 'https://github.com/tonebzr/blog' }
