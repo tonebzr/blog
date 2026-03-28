@@ -1,9 +1,9 @@
 # 🚀 TBZR Blog
 
-A bilingual technical blog built with **Astro** and **Starlight**.
+https://tbzr.ovh    A bilingual technical blog built with **Astro** and **Starlight**.
 
 ## 🌍 Languages
-- **Français 🇫🇷** (Default)
+- **Français 🇫🇷**
 - **English 🇬🇧**
 
 ## 🛠️ Key Features
