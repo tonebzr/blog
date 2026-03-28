@@ -8,7 +8,11 @@ export default defineConfig({
     },
     integrations: [
         starlight({
-            title: 'TBZR Blog',
+            title: 'Blog',
+			logo: {
+				src: './src/assets/images/home/tbzr_logo.png',
+				alt: 'Logo TBZR',
+			},
             defaultLocale: 'fr',
             locales: {
                 fr: {
