@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
-import starlightCatppuccin from '@catppuccin/starlight'; // 1. Ajout de l'import
+import starlightCatppuccin from '@catppuccin/starlight';
 
 export default defineConfig({
     redirects: {
@@ -9,8 +9,7 @@ export default defineConfig({
     },
     integrations: [
         starlight({
-            title: 'Blog',
-            // 2. Ajout du plugin ici
+            title: 'blog',
             customCss: ['./src/styles/custom.css'],
             
             plugins: [
@@ -19,10 +18,12 @@ export default defineConfig({
                     light: { flavor: "latte", accent: "sapphire" },
                 }),
             ],
+            
             logo: {
                 src: './src/assets/images/home/tbzr_logo.webp',
                 alt: 'Logo TBZR',
             },
+            
             defaultLocale: 'fr',
             locales: {
                 fr: {
@@ -34,21 +35,28 @@ export default defineConfig({
                     lang: 'en-US',
                 },
             },
+            
             components: {
                 LanguageSelect: './src/components/LanguageSelect.astro',
             },
+            
             social: [
-                { icon: 'github', label: 'GitHub', href: 'https://github.com/tonebzr/blog' }
+                { icon: 'github', label: 'GitHub', href: 'https://github.com/tonebzr/blog' },
+                { icon: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/tony-brezulier' }
             ],
+
+            // --- DESACTIVATION DES BOUTONS PRECEDENT / SUIVANT ---
+            pagination: false,
+            
             sidebar: [
-                {
-                    label: 'Guides',
-                    translations: {
-                        en: 'Guides',
-                    },
-                    items: [
-                        { label: 'Exemple de Guide', slug: 'guides/example', translations: { en: 'Example Guide' } },
-                    ],
+                { label: 'AI', link: '/ai/' },
+                { label: 'SEC', link: '/sec/' },
+                { label: 'RADIO', link: '/radio/' },
+                { label: 'FORMATION', link: '/formation/' },
+                { 
+                    label: 'ACTUALITÉ', 
+                    link: '/news/',
+                    badge: { text: 'BLOG', variant: 'danger' } 
                 },
             ],
         }),

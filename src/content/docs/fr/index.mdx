@@ -6,11 +6,11 @@ hero:
   image:
     file: ../../../assets/images/home/tbzr_stoat.webp
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: Actualités
+      link: /fr/news/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
+    - text: documentation du site
+      link: https://github.com/tonebzr/blog
       icon: external
       variant: minimal
 ---
@@ -18,14 +18,28 @@ hero:
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
 
-<CardGrid stagger>
-	<Card title="IA auto hébergée" icon="pencil">
-		Création de contenairs PODMAN, configuration ROCM pytorch, présentation de l'outil ComfyUI
-	</Card>
-	<Card title="Radio GNU" icon="add-document">
-		Découvrez le monde de la radio avec Hack Rf
-	</Card>
-	<Card title="Sécurité Informatique" icon="setting">
-		Sécurité Informatique
-	</Card>
+<CardGrid>
+  <Card title="IA Auto-Hébergée" icon="setting">
+    Reprenez le contrôle sur vos modèles de langage. De la création de conteneurs **Podman** à la configuration **ROCm** pour vos cartes AMD, je vous guide dans l'installation de **Pytorch** et l'optimisation de vos workflows sur **ComfyUI**. 
+    
+    **[Accéder au labo AI →](/fr/ai/)**
+  </Card>
+
+  <Card title="Exploration Radio" icon="rss">
+    Plongez dans le spectre électromagnétique avec la **SDR**. Apprenez à manipuler **GNU Radio** et à exploiter la puissance du **HackRF One** pour intercepter, analyser et comprendre les ondes qui nous entourent.
+    
+    **[Explorez les fréquences →](/fr/radio/)**
+  </Card>
+
+  <Card title="Sécurité Informatique" icon="magnifier">
+    Pensez la sécurité comme un processus, pas un outil. Je vous accompagne de la surveillance réseau (**NetFlow, IPS**) jusqu’à l'analyse de malwares et la réponse aux incidents. Maîtrisez la **Cyber Killing Chain**.
+    
+    **[Découvrez l'analyse SOC →](/fr/sec/)**
+  </Card>
+
+  <Card title="Formations & Cours" icon="open-book">
+    Transmettre pour mieux maîtriser. Retrouvez ici mes parcours structurés sur la **Sécurité**, la **Radio logicielle** et l'**IA**. Des modules pensés pour passer de la théorie à la pratique réelle sur vos propres infrastructures.
+    
+    **[Voir les formations →](/fr/formation/)**
+  </Card>
 </CardGrid>

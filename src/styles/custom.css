@@ -1,37 +1,157 @@
-/* src/styles/custom.css */
+/* --- Global Layout & Sidebar Fixes --- */
+:root {
+  --sl-content-width: 85rem;
+}
 
-/* État normal de la carte */
+/* Narrower Right Sidebar (Table of Contents) */
+.right-sidebar {
+  width: 14rem !important;
+}
+
+.right-sidebar starlight-toc nav {
+  font-size: 0.8rem !important;
+  padding-left: 0.5rem !important;
+}
+/* --- Global Layout & Sidebar Fixes --- */
+:root {
+  --sl-content-width: 85rem; /* Increased for a wider feel */
+}
+
+/* Align content to the left and shrink right sidebar */
+.main-frame {
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Narrower Right Sidebar (Table of Contents) */
+.right-sidebar {
+  width: 14rem !important; /* Reduced from 16rem */
+}
+
+.right-sidebar starlight-toc nav {
+  font-size: 0.8rem !important; /* Compact text */
+  padding-left: 0.5rem !important;
+}
+
+@media (min-width: 72rem) {
+  /* Uniquement sur les pages de doc, PAS sur la home */
+  body:not(:has(.hero)) .sl-container {
+    margin-inline: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  body:not(:has(.hero)) .content-panel {
+    padding-inline-start: 2rem !important;
+  }
+}
+
+/* --- Interactive Cards Style --- */
 .card {
-  /* Le fond reste le gris sombre Mocha (var(--sl-color-gray-6)) */
   background-color: var(--sl-color-bg-elevated) !important;
-  
-  /* Bordure fine par défaut (un peu plus claire que le fond) */
   border: 1px solid var(--sl-color-gray-5) !important;
-  border-radius: 0.75rem !important; /* Angles arrondis */
-  
-  /* Transition fluide de 0.2s pour le mouvement et la bordure */
+  border-radius: 0.75rem !important;
   transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out !important;
-  cursor: pointer; /* Montre que c'est cliquable */
-  
-  /* Ombre subtile pour le relief par défaut */
+  cursor: pointer;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-/* État quand on passe la souris (Hover) */
 .card:hover {
-  /* LE FOND NE CHANGE PAS -> On ne reprécise pas background-color */
-  
-  /* La BORDURE devient ton Accent (Sapphire) */
   border-color: var(--sl-color-accent) !important;
-  
-  /* MOUVEMENT SUBTIL : La carte monte juste un peu (3 pixels au lieu de 5) */
   transform: translateY(-3px) !important;
-  
-  /* On renforce un peu l'ombre pour accentuer l'effet de "lift" */
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
 }
 
-/* On garde ton icône Sapphire (Blue) par défaut */
 .card .icon {
   color: var(--sl-color-accent) !important;
+}
+
+/* --- Clean Up Article View --- */
+.content-panel h2 {
+  margin-top: 1.5rem !important;
+}
+
+/* Remove default sidebar border-left to save more space */
+.right-sidebar-container {
+  border-inline-start: 1px solid var(--sl-color-gray-6) !important;
+}
+
+/* --- TBZR Lab - Home page layout --- */
+
+/* Sur la home, on centre le main-frame au lieu de le coller à gauche */
+body:has(.hero) .main-frame {
+  justify-content: center !important;
+  width: 100% !important;
+}
+
+/* Limite et centre le contenu principal de la home */
+body:has(.hero) main {
+  max-width: 80rem !important;
+  width: 100% !important;
+  display: block !important;
+  margin-inline: auto !important;
+  padding-inline: 1.5rem;
+}
+
+/* CardGrid : gap resserré */
+body:has(.hero) .card-grid {
+  gap: 1.5rem;
+}
+/* --- Pages doc : layout centré comme Stéphane Robert --- */
+@media (min-width: 72rem) {
+  body:not(:has(.hero)) .sl-container {
+    margin-inline: auto !important;
+    max-width: 100% !important;
+  }
+
+  body:not(:has(.hero)) .content-panel {
+    padding-inline: 2rem !important;
+  }
+}
+
+/* --- Interactive Cards Style --- */
+.card {
+  background-color: var(--sl-color-bg-elevated) !important;
+  border: 1px solid var(--sl-color-gray-5) !important;
+  border-radius: 0.75rem !important;
+  transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out !important;
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  border-color: var(--sl-color-accent) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+.card .icon {
+  color: var(--sl-color-accent) !important;
+}
+
+/* --- Clean Up Article View --- */
+.content-panel h2 {
+  margin-top: 1.5rem !important;
+}
+
+.right-sidebar-container {
+  border-inline-start: 1px solid var(--sl-color-gray-6) !important;
+}
+
+/* --- Home page layout (splash) --- */
+body:has(.hero) .main-frame {
+  justify-content: center !important;
+  width: 100% !important;
+}
+
+body:has(.hero) main {
+  max-width: 80rem !important;
+  width: 100% !important;
+  display: block !important;
+  margin-inline: auto !important;
+  padding-inline: 1.5rem;
+}
+
+body:has(.hero) .card-grid {
+  gap: 1.5rem;
 }
