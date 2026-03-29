@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import starlightCatppuccin from '@catppuccin/starlight'; // 1. Ajout de l'import
 
 export default defineConfig({
     redirects: {
@@ -9,10 +10,17 @@ export default defineConfig({
     integrations: [
         starlight({
             title: 'Blog',
-			logo: {
-				src: './src/assets/images/home/tbzr_logo.webp',
-				alt: 'Logo TBZR',
-			},
+            // 2. Ajout du plugin ici
+            plugins: [
+                starlightCatppuccin({
+                    dark: { flavor: "mocha", accent: "sapphire" },
+                    light: { flavor: "latte", accent: "sapphire" },
+                }),
+            ],
+            logo: {
+                src: './src/assets/images/home/tbzr_logo.webp',
+                alt: 'Logo TBZR',
+            },
             defaultLocale: 'fr',
             locales: {
                 fr: {
@@ -24,7 +32,6 @@ export default defineConfig({
                     lang: 'en-US',
                 },
             },
-            // Add the override here
             components: {
                 LanguageSelect: './src/components/LanguageSelect.astro',
             },
