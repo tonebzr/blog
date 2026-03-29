@@ -1,0 +1,37 @@
+/* src/styles/custom.css */
+
+/* État normal de la carte */
+.card {
+  /* Le fond reste le gris sombre Mocha (var(--sl-color-gray-6)) */
+  background-color: var(--sl-color-bg-elevated) !important;
+  
+  /* Bordure fine par défaut (un peu plus claire que le fond) */
+  border: 1px solid var(--sl-color-gray-5) !important;
+  border-radius: 0.75rem !important; /* Angles arrondis */
+  
+  /* Transition fluide de 0.2s pour le mouvement et la bordure */
+  transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out !important;
+  cursor: pointer; /* Montre que c'est cliquable */
+  
+  /* Ombre subtile pour le relief par défaut */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* État quand on passe la souris (Hover) */
+.card:hover {
+  /* LE FOND NE CHANGE PAS -> On ne reprécise pas background-color */
+  
+  /* La BORDURE devient ton Accent (Sapphire) */
+  border-color: var(--sl-color-accent) !important;
+  
+  /* MOUVEMENT SUBTIL : La carte monte juste un peu (3 pixels au lieu de 5) */
+  transform: translateY(-3px) !important;
+  
+  /* On renforce un peu l'ombre pour accentuer l'effet de "lift" */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+/* On garde ton icône Sapphire (Blue) par défaut */
+.card .icon {
+  color: var(--sl-color-accent) !important;
+}

@@ -11,6 +11,8 @@ export default defineConfig({
         starlight({
             title: 'Blog',
             // 2. Ajout du plugin ici
+            customCss: ['./src/styles/custom.css'],
+            
             plugins: [
                 starlightCatppuccin({
                     dark: { flavor: "mocha", accent: "sapphire" },
