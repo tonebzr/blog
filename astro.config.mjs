@@ -10,7 +10,7 @@ export default defineConfig({
         starlight({
             title: 'Blog',
 			logo: {
-				src: './src/assets/images/home/tbzr_logo.png',
+				src: './src/assets/images/home/tbzr_logo.webp',
 				alt: 'Logo TBZR',
 			},
             defaultLocale: 'fr',
