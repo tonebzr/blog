@@ -49,13 +49,30 @@ export default defineConfig({
             pagination: false,
             
             sidebar: [
-                { label: 'AI', link: '/ai/' },
-                { label: 'SEC', link: '/sec/' },
-                { label: 'RADIO', link: '/radio/' },
-                { label: 'FORMATION', link: '/formation/' },
+                { 
+                    label: 'AI', 
+                    link: '/ai/',
+                    translations: { en: 'AI' } 
+                },
+                { 
+                    label: 'SEC', 
+                    link: '/sec/',
+                    translations: { en: 'SEC' } 
+                },
+                { 
+                    label: 'RADIO', 
+                    link: '/radio/',
+                    translations: { en: 'RADIO' } 
+                },
+                { 
+                    label: 'FORMATION', 
+                    link: '/formation/',
+                    translations: { en: 'LEARNING' } // Le texte change en anglais
+                },
                 { 
                     label: 'ACTUALITÉ', 
                     link: '/news/',
+                    translations: { en: 'NEWS' },
                     badge: { text: 'BLOG', variant: 'danger' } 
                 },
             ],

@@ -1,0 +1,45 @@
+---
+title: Welcome to the TBZR blog
+template: splash # Remove or comment out this line to display the site sidebar on this page.
+hero:
+  tagline: News and technical tutorials. Self-hosted AI, offensive/defensive security, radio exploration with GNU Radio & HackRF.
+  image:
+    file: ../../../assets/images/home/tbzr_stoat.webp
+  actions:
+    - text: News
+      link: /en/news/
+      icon: right-arrow
+    - text: Site documentation
+      link: https://github.com/tonebzr/blog
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+
+<CardGrid>
+  <Card title="Self-Hosted AI" icon="setting">
+    Take control of your language models. From creating **Podman** containers to configuring **ROCm** for your AMD cards, I guide you through installing **Pytorch** and optimizing your workflows on **ComfyUI**. 
+    
+    **[Access the AI lab →](/en/ai/)**
+  </Card>
+
+  <Card title="Radio Exploration" icon="rss">
+    Dive into the electromagnetic spectrum with SDR. Learn to manipulate **GNU Radio** and harness the power of the **HackRF One** to intercept, analyze, and understand the waves surrounding us.
+    
+    **[Explore the frequencies →](/en/radio/)**
+  </Card>
+
+  <Card title="Computer Security" icon="magnifier">
+    Think of security as a process, not just a tool. I accompany you from network monitoring (**NetFlow, IPS**) to malware analysis and incident response. Master the **Cyber Killing Chain**.
+    
+    **[Discover SOC analysis →](/en/sec/)**
+  </Card>
+
+  <Card title="Training & Courses" icon="open-book">
+    Teaching to better master. Find here my structured courses on **Security**, **Software Defined Radio**, and **AI**. Modules designed to move from theory to real-world practice on your own infrastructure.
+    
+    **[See the trainings →](/en/formation/)**
+  </Card>
+</CardGrid>
