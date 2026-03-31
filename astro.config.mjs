@@ -10,6 +10,7 @@ export default defineConfig({
     integrations: [
         starlight({
             title: 'blog',
+            lastUpdated: true,
             customCss: ['./src/styles/custom.css'],
             
             plugins: [
@@ -26,14 +27,8 @@ export default defineConfig({
             
             defaultLocale: 'fr',
             locales: {
-                fr: {
-                    label: 'Français',
-                    lang: 'fr-FR',
-                },
-                en: {
-                    label: 'English',
-                    lang: 'en-US',
-                },
+                fr: { label: 'Français', lang: 'fr' },
+                en: { label: 'English', lang: 'en' },
             },
             
             components: {
@@ -45,34 +40,33 @@ export default defineConfig({
                 { icon: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/tony-brezulier' }
             ],
 
-            // --- DESACTIVATION DES BOUTONS PRECEDENT / SUIVANT ---
             pagination: false,
             
             sidebar: [
                 { 
-                    label: 'AI', 
-                    link: '/ai/',
+                    label: 'IA', 
+                    link: 'ai/', 
                     translations: { en: 'AI' } 
                 },
                 { 
-                    label: 'SEC', 
-                    link: '/sec/',
+                    label: 'SÉCURITÉ', 
+                    link: 'security/', 
                     translations: { en: 'SEC' } 
                 },
                 { 
                     label: 'RADIO', 
-                    link: '/radio/',
+                    link: 'radio/', 
                     translations: { en: 'RADIO' } 
                 },
                 { 
                     label: 'FORMATION', 
-                    link: '/formation/',
-                    translations: { en: 'LEARNING' } // Le texte change en anglais
+                    link: 'learning/', 
+                    translations: { en: 'LEARNING' } 
                 },
                 { 
                     label: 'ACTUALITÉ', 
-                    link: '/news/',
-                    translations: { en: 'NEWS' },
+                    link: 'news/', 
+                    translations: { en: 'NEWS' }, 
                     badge: { text: 'BLOG', variant: 'danger' } 
                 },
             ],
