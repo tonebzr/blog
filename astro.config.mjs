@@ -51,7 +51,7 @@ export default defineConfig({
                 { 
                     label: 'SÉCURITÉ', 
                     link: 'security/', 
-                    translations: { en: 'SEC' } 
+                    translations: { en: 'SECURITY' } 
                 },
                 { 
                     label: 'RADIO', 
