@@ -1,6 +1,8 @@
 ---
 title: "Gemini 3.1 Flash Live : L'agent vocal qui efface la frontière avec l'humain"
 description: "Analyse du nouveau modèle vocal de Google capable de gérer 90 langues avec une latence record."
+date: "2026-03-29"
+category: "SEC"
 ---
 
 Google vient de franchir un nouveau seuil avec **Gemini 3.1 Flash Live**, son modèle audio le plus abouti à ce jour. Plus qu'une simple mise à jour, ce déploiement via l'API Gemini Live marque une rupture technologique : la voix de l'IA devient si naturelle qu'elle remet en question notre capacité à identifier une machine au téléphone.

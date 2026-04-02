@@ -1,0 +1,62 @@
+---
+import { getCollection } from 'astro:content';
+import { Card, CardGrid, Badge } from '@astrojs/starlight/components';
+
+// 1. Détection de la langue
+const lang = Astro.url.pathname.split('/')[1] || 'en';
+
+// 2. Récupération sécurisée de la collection
+const allDocs = await getCollection('docs');
+
+// 3. Filtrage des posts CyberOps (on vérifie que le post existe et a un slug)
+const cyberOpsPosts = allDocs
+  .filter(post => 
+    post && 
+    post.id && 
+    post.id.startsWith(`${lang}/learning/posts/cyberops/`) &&
+    !post.id.endsWith('index.mdx') && // On exclut la page index elle-même pour éviter une boucle
+    !post.id.endsWith('index.md')
+  )
+  .sort((a, b) => a.id.localeCompare(b.id))
+  .slice(0, 6);
+
+const labels = {
+  en: "Access Module →",
+  fr: "Accéder au module →"
+};
+---
+
+<CardGrid>
+  {cyberOpsPosts.map((post) => {
+    // On sécurise l'URL : si post.slug n'existe pas, on utilise l'id
+    const targetSlug = post.slug || post.id.replace(/\.[^/.]+$/, "");
+    const href = targetSlug.startsWith('/') ? targetSlug : `/${targetSlug}`;
+
+    return (
+      <Card title={post.data.title || "Untitled"}>
+        <div style="margin-bottom: 0.75rem;">
+          <Badge text="SOC" variant="note" />
+        </div>
+
+        <p style="font-size: 0.9rem; color: var(--sl-color-gray-3); min-height: 3em;">
+          {post.data.description || (lang === 'fr' ? "Aucune description disponible." : "No description available.")}
+        </p>
+        
+        <div style="margin-top: 1rem;">
+          <a 
+            href={href} 
+            style="font-weight: bold; text-decoration: none; color: var(--sl-color-accent-high);"
+          >
+            {labels[lang] || labels.en}
+          </a>
+        </div>
+      </Card>
+    )
+  })}
+</CardGrid>
+
+{cyberOpsPosts.length === 0 && (
+  <p style="text-align: center; font-style: italic;">
+    {lang === 'fr' ? "Aucun module trouvé dans ce dossier." : "No modules found in this folder."}
+  </p>
+)}

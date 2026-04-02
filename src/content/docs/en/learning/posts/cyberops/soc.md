@@ -1,6 +1,7 @@
 ---
 title: "SOC Personnel Hierarchy and Infrastructure Integration"
 description: "A technical evaluation of SOC job roles, hierarchical escalation procedures, and the architectural implementation of SIEM and SOAR technologies."
+order: 2
 ---
 
 ## MODULE OVERVIEW

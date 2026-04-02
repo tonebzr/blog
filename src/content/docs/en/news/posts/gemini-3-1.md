@@ -1,6 +1,8 @@
 ---
 title: "Gemini 3.1 Flash Live: The Voice Agent Blurring the Lines with Humans"
 description: "Analysis of Google's new voice model capable of handling 90 languages with record latency."
+date: "2026-03-27"
+category: "AI"
 ---
 
 Google has just crossed a new threshold with **Gemini 3.1 Flash Live**, its most accomplished audio model to date. More than just an update, this deployment via the Gemini Live API marks a technological breakthrough: the AI voice becomes so natural that it challenges our ability to identify a machine on the phone.
@@ -36,4 +38,3 @@ To address concerns about vocal *deepfakes*, Google deploys **SynthID**.
 > **Lab Conclusion:** The Turing Test, formulated in 1950, has never been so close to becoming definitively obsolete for voice. The technology is ready, it remains to be seen if the legal framework (such as the European *AI Act* planned for August 2026) will manage to impose real transparency on companies.
 
 ---
-*Source: Technical synthesis based on Google's official announcement and Developpez.com's analysis.*

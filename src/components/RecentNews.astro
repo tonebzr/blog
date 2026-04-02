@@ -1,0 +1,71 @@
+---
+import { getCollection } from 'astro:content';
+import { Card, CardGrid, Badge } from '@astrojs/starlight/components';
+
+const lang = Astro.url.pathname.split('/')[1] || 'en';
+const allDocs = await getCollection('docs');
+
+const newsPosts = allDocs
+  .filter(post => 
+    post && 
+    post.id.startsWith(`${lang}/news/posts/`) &&
+    !post.id.endsWith('index.mdx') && 
+    !post.id.endsWith('index.md')
+  )
+  .sort((a, b) => new Date(b.data.date || 0).getTime() - new Date(a.data.date || 0).getTime())
+  .slice(0, 6);
+
+const getVariant = (val) => {
+  const cat = String(val || '').toUpperCase();
+  if (cat === 'SEC') return 'danger';
+  if (cat === 'AI' || cat === 'IA') return 'note';
+  return 'tip';
+};
+
+const labels = {
+  en: "Read full article →",
+  fr: "Lire l'article complet →"
+};
+---
+
+<CardGrid>
+  {newsPosts.map((post) => {
+    const targetSlug = post.slug || post.id.replace(/\.[^/.]+$/, "");
+    const href = targetSlug.startsWith('/') ? targetSlug : `/${targetSlug}`;
+    
+    // --- POWERFUL DATA EXTRACTION ---
+    // This looks into every possible hiding spot for your tag
+    const rawData = post.data.badge || post.data.category;
+    const displayTag = typeof rawData === 'object' ? rawData.text : rawData;
+
+    return (
+      <Card title={post.data.title || "Untitled"}>
+        <div style="margin-bottom: 0.75rem; display: flex; gap: 0.5rem; align-items: center;">
+          
+          {/* THE ICON BADGE */}
+          {rawData && (
+            <Badge 
+              text={typeof rawData === 'string' ? rawData.toUpperCase() : rawData.text?.toUpperCase()} 
+              variant={getVariant(typeof rawData === 'string' ? rawData : rawData.text)} 
+              outline
+            />
+          )}
+
+          {post.data.date && (
+            <Badge text={post.data.date} outline />
+          )}
+        </div>
+
+        <p style="font-size: 0.9rem; color: var(--sl-color-gray-3); min-height: 3.5em;">
+          {post.data.description}
+        </p>
+        
+        <div style="margin-top: 1rem;">
+          <a href={href} style="font-weight: bold; text-decoration: none; color: var(--sl-color-accent-high);">
+            {labels[lang]}
+          </a>
+        </div>
+      </Card>
+    )
+  })}
+</CardGrid>

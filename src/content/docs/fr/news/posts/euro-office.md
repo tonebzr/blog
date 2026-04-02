@@ -1,6 +1,8 @@
 ---
 title: "Euro-Office : La bureautique européenne entre souveraineté et bataille juridique"
 description: "Euro-Office : La bureautique européenne entre souveraineté et bataille juridique"
+date: "2026-03-31"
+category: "OpenSRC"
 ---
 
 Le 31 mars 2026, un consortium d'une douzaine d'acteurs technologiques européens (dont **IONOS, Nextcloud, et OpenXchange**) a dévoilé **Euro-Office** à Berlin. Cette suite bureautique open source se positionne comme l'alternative souveraine à Microsoft Office, ciblant prioritairement les administrations publiques et le secteur de l'éducation.

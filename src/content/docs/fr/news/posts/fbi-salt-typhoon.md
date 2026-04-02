@@ -1,6 +1,8 @@
 ---
 title: 'Le FBI infiltré par les hackers de "Salt Typhoon"'
 description: "Retour sur le piratage du réseau Digital Collection System."
+date: "2026-03-29"
+category: "SEC"
 ---
 
 Le Wall Street Journal vient de révéler une intrusion majeure : des hackers liés à l'État chinois auraient pénétré le **Digital Collection System Network (DCSNet)**, le réseau interne du FBI dédié aux interceptions et aux écoutes.

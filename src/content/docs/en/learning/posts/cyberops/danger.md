@@ -1,6 +1,7 @@
 ---
 title: "Advanced Threat Actor Analysis and Attack Vectors"
 description: "Refined module covering threat actor classification, malware delivery mechanisms, and the technical objectives of cyberwarfare and data exfiltration."
+order: 1
 ---
 
 ## MODULE OVERVIEW

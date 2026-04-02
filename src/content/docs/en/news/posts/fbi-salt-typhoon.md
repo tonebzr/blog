@@ -1,6 +1,8 @@
 ---
 title: 'The FBI Infiltrated by "Salt Typhoon" Hackers'
 description: "A look back at the Digital Collection System Network hack."
+date: "2026-03-29"
+badge: "SEC"
 ---
 
 The Wall Street Journal has just revealed a major intrusion: hackers linked to the Chinese state are said to have penetrated the **Digital Collection System Network (DCSNet)**, the FBI's internal network dedicated to interceptions and wiretaps.

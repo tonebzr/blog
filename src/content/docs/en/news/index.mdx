@@ -1,39 +1,16 @@
 ---
+# src/content/docs/en/news/index.mdx
 title: NEWS
-description: Technology Watch, AI and Cybersecurity.
+description: Tech watch, AI insights, and Cybersecurity updates.
 tableOfContents: false
 ---
 
-import { Card, CardGrid, Badge } from '@astrojs/starlight/components';
+import RecentNews from '@/components/RecentNews.astro';
 
-## Latest Posts
+## Latest Publications
 
-<CardGrid>
+Stay updated with the latest trends in technology, artificial intelligence, and digital security. Our tech watch keeps you informed about the innovations and threats shaping tomorrow's world.
 
-  <Card title="Euro-Office vs ONLYOFFICE: European Digital Sovereignty Faces Legal Hurdles">
-    <Badge text="SEC" variant="danger" /> <Badge text="March 31, 2026" outline />
+<RecentNews />
 
-    The launch of Euro-Office, an ONLYOFFICE fork designed for EU independence, is immediately challenged over license violations
-
-    <br/>
-    [Read the full article →](/en/news/posts/euro-office/)
-  </Card>
-
-  <Card title="FBI Hacked by China?">
-    <Badge text="SEC" variant="danger" /> <Badge text="March 28, 2026" outline />
-
-    The Salt Typhoon group allegedly infiltrated the FBI's surveillance network (DCSNet). Investigation data and warrants would be compromised. A blow to US federal cybersecurity.
-
-    <br/>
-    [Read the full article →](/en/news/posts/fbi-salt-typhoon/)
-  </Card>
-
-  <Card title="Gemini 3.1 Flash Live: The Voice AI">
-    <Badge text="AI" variant="note" /> <Badge text="March 28, 2026" outline />
-    
-    Google deploys a voice agent so natural that it becomes difficult to know if you are talking to a robot. Analysis of a technological breakthrough.
-    
-    <br/>
-    [Read the full article →](/en/news/posts/gemini-3-1/)
-  </Card>
-</CardGrid>
+---
