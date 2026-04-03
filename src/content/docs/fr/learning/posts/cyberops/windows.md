@@ -87,5 +87,5 @@ Pour vérifier si la résolution de noms DNS fonctionne correctement, les deux m
 1.  **`nslookup [domaine]`** : Interroge directement le serveur DNS configuré.
 2.  **`ping [domaine]`** : Tente une résolution de nom avant l'envoi de paquets ICMP ; si l'adresse IP s'affiche, la résolution est fonctionnelle.
 
-### Analyse Médicolégale Sysinternals
-La valeur de registre `EulaAccepted` est un artefact critique pour l'investigation. Si un analyste trouve la valeur `HKCU\Software\Sysinternals\PsExec\EulaAccepted` réglée sur **0x1**, cela confirme de manière irréfutable que l'outil **PsExec** a été exécuté par cet utilisateur spécifique sur la machine.
+### Analyse Forensique
+La présence de la valeur `HKCU\Software\Sysinternals\PsExec\EulaAccepted` réglée sur 0x1 indique que l'utilisateur a accepté les conditions d'utilisation, soit manuellement via la fenêtre contextuelle, soit automatiquement via l'argument -accepteula. Bien que cet artefact suggère une intention ou une préparation à l'utilisation de `PsExec`, il ne constitue pas une preuve d'exécution du binaire. Cette valeur peut en effet être injectée à distance ou localement dans le registre par un script ou un fichier .reg avant tout lancement effectif, précisément pour contourner l'affichage de la licence.

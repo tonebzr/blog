@@ -93,4 +93,4 @@ To verify if DNS name resolution is functioning correctly on a Windows host, the
 2.  **`ping [domain]`**: Implicitly tests resolution; if the IP is returned but there is no reply, resolution is working even if ICMP is blocked.
 
 ### Sysinternals Forensics
-The `EulaAccepted` registry value is a critical artifact. If an analyst finds `HKCU\Software\Sysinternals\PsExec\EulaAccepted` set to `0x1`, it confirms the **PsExec** tool (often used for lateral movement) has been executed by that user profile.
+The presence of the value `HKCU\Software\Sysinternals\PsExec\EulaAccepted` set to 0x1 indicates that the user accepted the terms of use, either manually through the pop-up dialog, or automatically via the -accepteula argument. While this artifact suggests an intent or preparation to use `PsExec`, it does not constitute proof that the binary was actually executed. This value can indeed be injected remotely or locally into the registry via a script or a .reg file prior to any effective launch, precisely to bypass the license prompt display.
