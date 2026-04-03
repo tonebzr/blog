@@ -1,84 +1,91 @@
 ---
-title: "Architecture, Administration et Surveillance du Système Windows pour les Opérations de Cybersécurité"
-description: "Analyse technique approfondie des processus, du Registre Windows, des commandes réseau et des outils d'administration pour la détection d'incidents et la préparation à l'examen Cisco CyberOps."
-order: 3
+title: "Architecture Windows Avancée, Administration et Surveillance pour CyberOps"
+description: "Analyse technique approfondie des composants internes de l'OS Windows, de la sécurité du système de fichiers, des séquences de démarrage et des opérations CLI pour la préparation à la certification Cisco CyberOps Associate."
+ordfer: 3
 ---
 
-## APERÇU DU MODULE
+## MODULE OVERVIEW
 
-Ce module synthétise les composants critiques du système d'exploitation Windows nécessaires à un analyste **CyberOps Associate**. L'accent est mis sur la structure interne du système (Registre, Processus), l'utilisation de la ligne de commande (**CLI**) et de **PowerShell** pour l'audit, ainsi que sur l'application des politiques de sécurité via le pare-feu et les outils de surveillance. La compréhension de ces éléments est vitale pour identifier les vecteurs d'attaque et maintenir l'intégrité du système.
+La maîtrise de l'environnement Windows est une exigence fondamentale pour un analyste en sécurité au sein d'un centre d'opérations de sécurité (SOC). Ce module analyse l'architecture sous-jacente qui régit l'exécution des processus, les communications réseau et les mécanismes de persistance. En comprenant l'interaction entre le **Registre Windows**, le système de fichiers **NTFS** et le **processus de démarrage**, les analystes peuvent identifier efficacement les modifications non autorisées et maintenir l'intégrité du système hôte.
 
----
 
-## CONCEPTS FONDAMENTAUX ET DÉFINITIONS
 
-### Structure et Hiérarchie du Registre Windows
-Le Registre est la base de données centrale de configuration. Toute modification des paramètres utilisateur ou système y est stockée.
+## CORE CONCEPTS & DEFINITIONS
 
-[Image de la hiérarchie du Registre Windows avec ses 5 ruches principales]
+### Architecture du Système de Fichiers : NTFS vs. FAT32
+Le système **NTFS (New Technology File System)** est la norme pour les environnements Windows modernes, offrant des avantages significatifs en termes de sécurité et de fiabilité par rapport à l'ancien système **FAT32**.
 
-* **HKEY_CLASSES_ROOT (HKCR)** : Stocke les informations sur les associations d'extensions de fichiers et les enregistrements **OLE** (Object Linking and Embedding).
-* **HKEY_CURRENT_USER (HKCU)** : Contient les configurations de l'utilisateur actuellement sessionné. C'est un lien dynamique vers une sous-clé de **HKEY_USERS**.
-* **HKEY_LOCAL_MACHINE (HKLM)** : Contient les paramètres de configuration globaux (logiciels et matériel) applicables à tous les utilisateurs.
-* **HKEY_USERS (HKU)** : Contient les profils de tous les comptes utilisateurs enregistrés sur l'hôte.
-* **HKEY_CURRENT_CONFIG (HKCC)** : Stocke les informations sur le profil matériel utilisé au démarrage.
+* **Fonctionnalités de Sécurité** : NTFS prend en charge les **listes de contrôle d'accès (ACL)**, permettant des autorisations granulaires sur les fichiers et les dossiers.
+* **Fiabilité** : Il intègre la **journalisation transactionnelle** (Journaling) et la **détection automatique des secteurs défectueux**, garantissant l'intégrité des données en cas de défaillance matérielle.
+* **Évolutivité** : NTFS supporte des fichiers et des partitions de tailles nettement plus importantes que la limite de **4 Go** imposée par le FAT32.
 
-### Gestion des Processus et Unités d'Exécution
-* **Processus** : Instance d'un programme en exécution disposant d'un **PID** (Process ID) unique.
-* **Thread (Fil d'exécution)** : Unité de base à laquelle le système d'exploitation alloue du temps processeur. Un processus possède au moins un thread.
-* **Handle (Descripteur)** : Ressource (fichier, clé de registre) vers laquelle un processus pointe pour effectuer des opérations.
+### Séquence de Démarrage Windows
+Comprendre l'ordre de démarrage est crucial pour identifier les "bootkits" ou les pilotes non autorisés se chargeant tôt dans la chaîne d'exécution. Après l'initialisation du BIOS/UEFI et du gestionnaire de démarrage (**bootmgr.exe**), la séquence est la suivante :
 
----
+1.  **Chargement du chargeur** : Le chargeur de démarrage Windows, **winload.exe**, est chargé.
+2.  **Initialisation du Noyau** : Le noyau (**ntoskrnl.exe**) et la couche d'abstraction matérielle (**hal.dll**) sont chargés en mémoire.
+3.  **Exécution du Noyau** : **ntoskrnl.exe** s'exécute, initialisant les sous-systèmes exécutifs.
+4.  **Gestion de Session** : Le sous-système du gestionnaire de session (**smss.exe**) démarre et le sous-système Windows est initialisé.
+5.  **Ouverture de Session** : **winlogon.exe** est chargé et exécute le processus d'ouverture de session utilisateur.
 
-## TAXONOMIE TECHNIQUE ET CLASSIFICATION
 
-### Comparaison des Versions et Limitations Système
-Les spécifications techniques suivantes sont critiques pour l'évaluation de l'infrastructure :
 
-| Caractéristique | Spécification / Valeur | Note Technique |
+### Protocoles de Réseau et Services
+* **Server Message Block (SMB)** : Protocole de communication client-serveur utilisé pour le **partage de ressources réseau** telles que les fichiers et les imprimantes. C'est une cible fréquente pour les mouvements latéraux.
+* **Netsh** : Utilitaire de ligne de commande permettant de **configurer les paramètres réseau** de l'ordinateur local ou distant, y compris les interfaces et le pare-feu.
+
+## TECHNICAL TAXONOMY & CLASSIFICATION
+
+### Outils d'Administration et d'Investigation
+Ces outils sont essentiels pour corréler les événements système avec des violations potentielles de la sécurité.
+
+| Outil | Commande d'Accès | Fonction de Sécurité Principale |
 | :--- | :--- | :--- |
-| **Limite RAM (32-bit)** | **4 Go** | Limite physique d'adressage pour les OS x86. |
-| **Introduction 64-bit** | **Windows XP** | Première version grand public supportant l'architecture x64. |
-| **Interpréteur par défaut** | **PowerShell** | Utilise des **cmdlets** (Verbe-Nom) et manipule des objets. |
-| **Politique Pare-feu** | **Restrictive** | Tout ce qui n'est pas explicitement autorisé est interdit. |
+| **Windows Defender Firewall** | `wf.msc` | Applique une **politique restrictive** pour refuser ou autoriser le trafic. |
+| **PowerShell** | `powershell.exe` | Environnement CLI objet utilisé pour les **scripts** et l'automatisation. |
+| **Observateur d'Événements** | `eventvwr.msc` | Gère les journaux (Sécurité, Système, Application) pour l'audit. |
+| **Éditeur du Registre** | `regedit.exe` | Base de données hiérarchique des configurations système et utilisateurs. |
 
-### Outils de Surveillance et de Diagnostic
-1. **Gestionnaire des tâches** : Surveillance rapide des applications, processus d'arrière-plan et services.
-2. **Moniteur de ressources** : Analyse en temps réel de l'utilisation CPU, Mémoire, Disque et Réseau par PID.
-3. **Analyseur de performances** : Permet la création de **Data Collector Sets** pour enregistrer des journaux (ex: `.csv`) sur une période définie.
-4. **Observateur d'événements** : Indispensable pour l'analyse forensique (logs de connexion, erreurs système).
+### Référence de l'Interface de Ligne de Commande (CLI)
+Les analystes doivent maîtriser l'invite de commande Windows pour l'interrogation rapide des hôtes.
 
----
+| Commande | Résultat Opérationnel |
+| :--- | :--- |
+| **`dir`** | Liste les fichiers et sous-répertoires du répertoire courant. |
+| **`cd`** | Modifie le répertoire de travail actuel. |
+| **`ren`** | Renomme un fichier ou un répertoire spécifié. |
+| **`mkdir`** | Crée un nouveau répertoire. |
+| **`nslookup`** | Interroge les serveurs DNS pour vérifier la résolution de noms. |
+| **`ping`** | Teste la connectivité et la résolution DNS via des requêtes ICMP Echo. |
 
-## ANALYSE OPÉRATIONNELLE
+## OPERATIONAL ANALYSIS
 
-### Analyse Réseau via l'Interface de Ligne de Commande (CLI)
-L'analyste utilise des commandes spécifiques pour auditer les connexions actives et la configuration :
+### Exécution PowerShell et Objets
+PowerShell utilise des **cmdlets**, qui sont des classes .NET spécialisées effectuant des actions spécifiques. Contrairement aux shells textuels (comme Bash ou CMD), les cmdlets retournent des **objets** à la commande suivante dans le pipeline. Les scripts PowerShell utilisent l'extension de fichier **`.ps1`**.
 
-* **`netstat -abno`** : Affiche toutes les connexions TCP/UDP actives, l'état de la connexion (LISTENING, ESTABLISHED), le PID et le nom de l'exécutable associé.
-* **`net use`** : Commande permettant de mapper un lecteur réseau ou d'établir une connexion à un répertoire partagé distant.
-* **`net start / stop [nom_du_service]`** : Contrôle direct des services système depuis la console.
+### Gestion des Privilèges
+Windows fonctionne sur le principe du moindre privilège. Si une application nécessite des droits élevés :
+1.  L'utilisateur doit effectuer un clic droit sur l'exécutable.
+2.  Sélectionner l'option **Exécuter en tant qu'administrateur**.
+*Note technique* : Contrairement à Linux, les termes "root" ou "superuser" ne sont pas utilisés nativement dans la terminologie administrative de Windows.
 
-### Administration et Navigation Système
-* **`cd /`** : Commande pour retourner immédiatement à la racine (**Root Directory**) du lecteur actuel.
-* **`Get-Alias [commande]`** : Sous PowerShell, permet de voir à quel cmdlet correspond une commande DOS (ex: `dir` est un alias pour `Get-ChildItem`).
-* **`Clear-RecycleBin`** : Suppression définitive des fichiers de la corbeille via PowerShell.
+### Audit Réseau et Logique du Pare-feu
+Pour empêcher une application d'exfiltrer des données, on utilise le **Pare-feu Windows Defender avec fonctions avancées de sécurité**.
+* **Règles Entrantes** : Contrôlent le trafic provenant du réseau vers l'hôte.
+* **Règles Sortantes** : Contrôlent le trafic émis par l'hôte vers le réseau (crucial pour bloquer les communications C2).
+* **Vérification** : La commande **`netstat -abno`** permet d'identifier le **PID** d'une application et de vérifier l'état des connexions (`ESTABLISHED`, `LISTENING`).
 
----
+## CASE STUDIES & EXAM SPECIFICS
 
-## ÉTUDES DE CAS ET SPÉCIFICITÉS DE L'EXAMEN
+### Scénario : Échec d'un Service Persistant
+Si un utilitaire tiers ne démarre pas automatiquement au démarrage du système :
+* L'analyste doit inspecter la console des services (`services.msc`) pour vérifier que le **Type de démarrage** est défini sur "Automatique".
+* Dans le registre, la clé `HKLM\SYSTEM\CurrentControlSet\Services\[NomDuService]` dicte les paramètres d'initialisation du service au niveau du noyau.
 
-### Scénario : Analyse Post-Incident
-**Situation** : Un employé suspecte une intrusion nocturne sur son poste éteint la veille.
-**Procédure d'audit** :
-1. Consulter l'**Observateur d'événements** pour vérifier les événements de démarrage et de connexion durant l'absence de l'employé.
-2. Analyser les journaux de l'**Analyseur de performances** si une collecte de données était active, pour identifier des pics de ressources inhabituels.
+### Dépannage DNS
+Pour vérifier si la résolution de noms DNS fonctionne correctement, les deux méthodes principales sont :
+1.  **`nslookup [domaine]`** : Interroge directement le serveur DNS configuré.
+2.  **`ping [domaine]`** : Tente une résolution de nom avant l'envoi de paquets ICMP ; si l'adresse IP s'affiche, la résolution est fonctionnelle.
 
-### Persistance et Registre
-Un exemple classique de manipulation est la clé `EulaAccepted` dans les outils Sysinternals. Une valeur `0x00000001 (1)` indique une acceptation. Si un attaquant réinitialise cette valeur à `0`, cela peut servir à masquer l'utilisation préalable d'outils d'administration ou à provoquer une interaction utilisateur inattendue.
-
-### Sécurité Réseau (Pare-feu Windows Defender)
-* **Mode de fonctionnement** : Filtrage par ports.
-* **Politique Permissive** : Autorise tout sauf ce qui est explicitement interdit (risqué).
-* **Politique Restrictive** : Bloque tout sauf ce qui est explicitement autorisé (standard de sécurité moderne).
-* **Configuration avancée** : Permet de créer des règles entrantes/sortantes basées sur des programmes, des ports ou des adresses IP spécifiques.
+### Analyse Médicolégale Sysinternals
+La valeur de registre `EulaAccepted` est un artefact critique pour l'investigation. Si un analyste trouve la valeur `HKCU\Software\Sysinternals\PsExec\EulaAccepted` réglée sur **0x1**, cela confirme de manière irréfutable que l'outil **PsExec** a été exécuté par cet utilisateur spécifique sur la machine.
