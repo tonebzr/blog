@@ -2,33 +2,38 @@
 import { getCollection } from 'astro:content';
 import { Card, CardGrid, Badge } from '@astrojs/starlight/components';
 
-// 1. Détection de la langue
+// 1. Language detection (defaults to 'en')
 const lang = Astro.url.pathname.split('/')[1] || 'en';
 
-// 2. Récupération sécurisée de la collection
+// 2. Fetch the 'docs' collection
 const allDocs = await getCollection('docs');
 
-// 3. Filtrage des posts CyberOps (on vérifie que le post existe et a un slug)
+// 3. Filter for CyberOps learning modules
 const cyberOpsPosts = allDocs
   .filter(post => 
     post && 
     post.id && 
     post.id.startsWith(`${lang}/learning/posts/cyberops/`) &&
-    !post.id.endsWith('index.mdx') && // On exclut la page index elle-même pour éviter une boucle
+    !post.id.endsWith('index.mdx') && 
     !post.id.endsWith('index.md')
   )
-  .sort((a, b) => a.id.localeCompare(b.id))
+  .sort((a, b) => a.id.localeCompare(b.id)) // Sorts by filename (e.g., 01, 02, 03)
   .slice(0, 6);
 
 const labels = {
   en: "Access Module →",
   fr: "Accéder au module →"
 };
+
+const emptyState = {
+  en: "No modules found in this folder.",
+  fr: "Aucun module trouvé dans ce dossier."
+};
 ---
 
 <CardGrid>
   {cyberOpsPosts.map((post) => {
-    // On sécurise l'URL : si post.slug n'existe pas, on utilise l'id
+    // Generate clean URL
     const targetSlug = post.slug || post.id.replace(/\.[^/.]+$/, "");
     const href = targetSlug.startsWith('/') ? targetSlug : `/${targetSlug}`;
 
@@ -39,7 +44,7 @@ const labels = {
         </div>
 
         <p style="font-size: 0.9rem; color: var(--sl-color-gray-3); min-height: 3em;">
-          {post.data.description || (lang === 'fr' ? "Aucune description disponible." : "No description available.")}
+          {post.data.description || "No description available."}
         </p>
         
         <div style="margin-top: 1rem;">
@@ -56,7 +61,7 @@ const labels = {
 </CardGrid>
 
 {cyberOpsPosts.length === 0 && (
-  <p style="text-align: center; font-style: italic;">
-    {lang === 'fr' ? "Aucun module trouvé dans ce dossier." : "No modules found in this folder."}
+  <p style="text-align: center; font-style: italic; margin-top: 2rem;">
+    {emptyState[lang] || emptyState.en}
   </p>
 )}

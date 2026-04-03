@@ -2,9 +2,13 @@
 import { getCollection } from 'astro:content';
 import { Card, CardGrid, Badge } from '@astrojs/starlight/components';
 
+// 1. Language detection
 const lang = Astro.url.pathname.split('/')[1] || 'en';
+
+// 2. Fetch the collection
 const allDocs = await getCollection('docs');
 
+// 3. Filtering and Sorting (Chronological for News)
 const newsPosts = allDocs
   .filter(post => 
     post && 
@@ -12,12 +16,17 @@ const newsPosts = allDocs
     !post.id.endsWith('index.mdx') && 
     !post.id.endsWith('index.md')
   )
-  .sort((a, b) => new Date(b.data.date || 0).getTime() - new Date(a.data.date || 0).getTime())
+  .sort((a, b) => {
+    const dateA = new Date(a.data.date || 0).getTime();
+    const dateB = new Date(b.data.date || 0).getTime();
+    return dateB - dateA; // Newest first
+  })
   .slice(0, 6);
 
+// Dynamic badge coloring logic
 const getVariant = (val) => {
   const cat = String(val || '').toUpperCase();
-  if (cat === 'SEC') return 'danger';
+  if (cat === 'SEC' || cat === 'SECURITY') return 'danger';
   if (cat === 'AI' || cat === 'IA') return 'note';
   return 'tip';
 };
@@ -33,39 +42,44 @@ const labels = {
     const targetSlug = post.slug || post.id.replace(/\.[^/.]+$/, "");
     const href = targetSlug.startsWith('/') ? targetSlug : `/${targetSlug}`;
     
-    // --- POWERFUL DATA EXTRACTION ---
-    // This looks into every possible hiding spot for your tag
+    // Data extraction for the badge
     const rawData = post.data.badge || post.data.category;
-    const displayTag = typeof rawData === 'object' ? rawData.text : rawData;
+    const badgeText = typeof rawData === 'object' ? rawData.text : rawData;
 
     return (
       <Card title={post.data.title || "Untitled"}>
-        <div style="margin-bottom: 0.75rem; display: flex; gap: 0.5rem; align-items: center;">
+        <div style="margin-bottom: 0.75rem; display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
           
-          {/* THE ICON BADGE */}
-          {rawData && (
+          {/* CATEGORY BADGE */}
+          {badgeText && (
             <Badge 
-              text={typeof rawData === 'string' ? rawData.toUpperCase() : rawData.text?.toUpperCase()} 
-              variant={getVariant(typeof rawData === 'string' ? rawData : rawData.text)} 
-              outline
+              text={badgeText.toUpperCase()} 
+              variant={getVariant(badgeText)} 
             />
           )}
 
+          {/* DATE BADGE */}
           {post.data.date && (
             <Badge text={post.data.date} outline />
           )}
         </div>
 
         <p style="font-size: 0.9rem; color: var(--sl-color-gray-3); min-height: 3.5em;">
-          {post.data.description}
+          {post.data.description || "No description available."}
         </p>
         
         <div style="margin-top: 1rem;">
           <a href={href} style="font-weight: bold; text-decoration: none; color: var(--sl-color-accent-high);">
-            {labels[lang]}
+            {labels[lang] || labels.en}
           </a>
         </div>
       </Card>
     )
   })}
 </CardGrid>
+
+{newsPosts.length === 0 && (
+  <p style="text-align: center; font-style: italic; margin-top: 2rem;">
+    {lang === 'fr' ? "Aucune actualité trouvée." : "No news articles found."}
+  </p>
+)}
