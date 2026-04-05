@@ -19,14 +19,15 @@ Le système **NTFS (New Technology File System)** est la norme pour les environn
 * **Fiabilité** : Il intègre la **journalisation transactionnelle** (Journaling) et la **détection automatique des secteurs défectueux**, garantissant l'intégrité des données en cas de défaillance matérielle.
 * **Évolutivité** : NTFS supporte des fichiers et des partitions de tailles nettement plus importantes que la limite de **4 Go** imposée par le FAT32.
 
+
 ### Séquence de Démarrage Windows
 Comprendre l'ordre de démarrage est crucial pour identifier les "bootkits" ou les pilotes non autorisés se chargeant tôt dans la chaîne d'exécution. Après l'initialisation du BIOS/UEFI et du gestionnaire de démarrage (**bootmgr.exe**), la séquence est la suivante :
 
-1.  **Chargement du chargeur** : Le chargeur de démarrage Windows, **winload.exe**, est chargé.
-2.  **Initialisation du Noyau** : Le noyau (**ntoskrnl.exe**) et la couche d'abstraction matérielle (**hal.dll**) sont chargés en mémoire.
-3.  **Exécution du Noyau** : **ntoskrnl.exe** s'exécute, initialisant les sous-systèmes exécutifs.
-4.  **Gestion de Session** : Le sous-système du gestionnaire de session (**smss.exe**) démarre et le sous-système Windows est initialisé.
-5.  **Ouverture de Session** : **winlogon.exe** est chargé et exécute le processus d'ouverture de session utilisateur.
+1.  **Amorçage du Système** : Le chargeur de démarrage Windows, **winload.exe**, prend la main pour charger les pilotes de démarrage critiques et la configuration du registre.
+2.  **Chargement du Noyau** : Le noyau (**ntoskrnl.exe**) et la couche d'abstraction matérielle (**hal.dll**) sont transférés en mémoire.
+3.  **Exécution du Noyau** : **ntoskrnl.exe** s'exécute, initialisant les composants internes (gestionnaire de mémoire, processus, etc.) et les pilotes système.
+4.  **Gestion de Session** : Le gestionnaire de session (**smss.exe**) démarre, crée l'environnement utilisateur et lance le sous-système Windows (**csrss.exe**).
+5.  **Ouverture de Session** : **winlogon.exe** est chargé pour gérer l'authentification et lancer le processus d'ouverture de session utilisateur.
 
 
 

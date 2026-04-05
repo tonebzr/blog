@@ -1,9 +1,7 @@
 ---
-
 title: "Linux Operating System Fundamentals and Security Operations"
 description: "A comprehensive technical analysis of Linux architecture, filesystem management, server identification, and log analysis within the context of a Security Operations Center (SOC)."
 order: 4
-
 ---
 
 ## MODULE OVERVIEW
