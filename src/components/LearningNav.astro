@@ -2,13 +2,13 @@
 import { getCollection } from 'astro:content';
 import { Card, CardGrid, Badge } from '@astrojs/starlight/components';
 
-// 1. Language detection (defaults to 'en')
+// 1. Language detection
 const lang = Astro.url.pathname.split('/')[1] || 'en';
 
 // 2. Fetch the 'docs' collection
 const allDocs = await getCollection('docs');
 
-// 3. Filter for CyberOps learning modules
+// 3. Filtering and Sorting
 const cyberOpsPosts = allDocs
   .filter(post => 
     post && 
@@ -17,8 +17,25 @@ const cyberOpsPosts = allDocs
     !post.id.endsWith('index.mdx') && 
     !post.id.endsWith('index.md')
   )
-  .sort((a, b) => a.id.localeCompare(b.id)) // Sorts by filename (e.g., 01, 02, 03)
-  .slice(0, 6);
+  .sort((a, b) => {
+    // PRIORITY 1: The 'order' field from frontmatter
+    // We use Number() to force comparison if Astro sent it as a string by mistake
+    const orderA = a.data.order !== undefined ? Number(a.data.order) : 999;
+    const orderB = b.data.order !== undefined ? Number(b.data.order) : 999;
+
+    if (orderA !== orderB) {
+      return orderA - orderB;
+    }
+    
+    // PRIORITY 2: Alphabetical sorting by ID if 'order' is missing or equal
+    return a.id.localeCompare(b.id);
+  });
+  // .slice(0, 6) -> REMOVED to display all 99 modules
+
+// DEBUG - Check your terminal to see if 'order' is actually being read
+cyberOpsPosts.forEach(p => {
+    console.log(`File: ${p.id} | Order: ${p.data.order}`);
+});
 
 const labels = {
   en: "Access Module →",
@@ -39,11 +56,16 @@ const emptyState = {
 
     return (
       <Card title={post.data.title || "Untitled"}>
-        <div style="margin-bottom: 0.75rem;">
+        <div style="margin-bottom: 0.75rem; display: flex; gap: 0.5rem; align-items: center;">
           <Badge text="SOC" variant="note" />
+          {post.data.order !== undefined && (
+            <span style="font-size: 0.8rem; font-family: monospace; color: var(--sl-color-gray-3);">
+              #{post.data.order.toString().padStart(2, '0')}
+            </span>
+          )}
         </div>
 
-        <p style="font-size: 0.9rem; color: var(--sl-color-gray-3); min-height: 3em;">
+        <p style="font-size: 0.9rem; color: var(--sl-color-gray-3); min-height: 3em; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
           {post.data.description || "No description available."}
         </p>
         
