@@ -1,6 +1,7 @@
 ---
 title: "Ethernet and IP Protocol Operations"
-description: "Fiche de révision complète pour l'examen CyberOps Cisco – Layer 2 (Ethernet) et Layer 3 (IP), champs de trames, adressage, routage et opérations sur les hôtes."
+description: "Layer 2 (Ethernet) and Layer 3 (IP), frame fields, addressing, routing, and host operations."
+order: 6
 ---
 
 ## MODULE OVERVIEW

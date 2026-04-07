@@ -1,6 +1,6 @@
 ---
 title: "Architecture Windows Avancée, Administration et Surveillance pour CyberOps"
-description: "Analyse technique approfondie des composants internes de l'OS Windows, de la sécurité du système de fichiers, des séquences de démarrage et des opérations CLI pour la préparation à la certification Cisco CyberOps Associate."
+description: "Analyse technique approfondie des composants internes de l'OS Windows, de la sécurité du système de fichiers, des séquences de démarrage et des opérations CLI."
 ordfer: 3
 ---
 

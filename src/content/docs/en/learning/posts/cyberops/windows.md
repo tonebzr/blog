@@ -1,6 +1,6 @@
 ---
 title: "Advanced Windows Architecture, Administration, and Monitoring for CyberOps"
-description: "A comprehensive technical analysis of Windows OS internals, filesystem security, boot sequences, and administrative command-line operations for Cisco CyberOps Associate preparation."
+description: "A comprehensive technical analysis of Windows OS internals, filesystem security, boot sequences, and administrative command-line operations."
 order: 3
 ---
 

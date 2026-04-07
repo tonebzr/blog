@@ -1,6 +1,7 @@
 ---
 title: "Connectivity Verification IP4 IPV6"
 description: "An advanced technical analysis of ICMPv4 and ICMPv6 message types, operational mechanics of diagnostic tools, and the integration of Neighbor Discovery Protocol within cybersecurity monitoring frameworks."
+order: 7
 ---
 
 ## MODULE OVERVIEW
@@ -36,11 +37,11 @@ Each ICMP message contains three common header fields: **Type**, **Code**, and *
 
 ICMPv6 integrates **NDP (RFC 4861)**, which replaces and extends several IPv4 protocols including ARP, ICMP Router Discovery, and ICMP Redirect. NDP operates over ICMPv6 and uses **multicast** rather than broadcast, which reduces unnecessary traffic on the link.
 
-- **Router Solicitation (RS) — Type 133**: Sent by hosts at startup to locate IPv6 routers on the local link (sent to the all-routers multicast address `FF02::2`).
-- **Router Advertisement (RA) — Type 134**: Sent periodically by routers, or in response to RS messages, to provide network prefixes, prefix lengths, default gateway, and flags (Managed/Other) for address configuration. Sent to all-nodes multicast `FF02::1`.
-- **Neighbor Solicitation (NS) — Type 135**: Used for Layer 3-to-Layer 2 address resolution (analogous to ARP Request) and **Duplicate Address Detection (DAD)**. Sent to the solicited-node multicast address.
-- **Neighbor Advertisement (NA) — Type 136**: Sent in response to an NS message to provide the sender's Link-Layer (MAC) address. Also sent unsolicited when a node changes its MAC address.
-- **Redirect — Type 137**: Sent by routers to inform a host of a better first-hop for a specific destination (similar to ICMPv4 Redirect, Type 5).
+- **Router Solicitation (RS)**: Sent by hosts at startup to locate IPv6 routers on the local link (sent to the all-routers multicast address `FF02::2`).
+- **Router Advertisement (RA)**: Sent periodically by routers, or in response to RS messages, to provide network prefixes, prefix lengths, default gateway, and flags (Managed/Other) for address configuration. Sent to all-nodes multicast `FF02::1`.
+- **Neighbor Solicitation (NS)**: Used for Layer 3-to-Layer 2 address resolution (analogous to ARP Request) and **Duplicate Address Detection (DAD)**. Sent to the solicited-node multicast address.
+- **Neighbor Advertisement (NA)**: Sent in response to an NS message to provide the sender's Link-Layer (MAC) address. Also sent unsolicited when a node changes its MAC address.
+- **Redirect**: Sent by routers to inform a host of a better first-hop for a specific destination (similar to ICMPv4 Redirect, Type 5).
 
 > 💡 **Key distinction**: NDP uses **multicast** addressing, not broadcast. This is a fundamental difference from ARP (IPv4), which uses broadcast.
 

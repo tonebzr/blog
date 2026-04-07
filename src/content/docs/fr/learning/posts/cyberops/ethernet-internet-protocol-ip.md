@@ -1,7 +1,7 @@
-
 ---
 title: "Opérations des protocoles Ethernet et IP"
-description: "Fiche de révision complète pour l'examen CyberOps Cisco – Couche 2 (Ethernet) et Couche 3 (IP), champs de trames, adressage, routage et opérations sur les hôtes."
+description: "Couche 2 (Ethernet) et Couche 3 (IP), champs de trames, adressage, routage et opérations sur les hôtes."
+order: 6
 ---
 
 ## PRÉSENTATION DU MODULE
