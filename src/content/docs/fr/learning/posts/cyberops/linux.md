@@ -1,9 +1,7 @@
 ---
-
 title: "Architecture, Administration et Opérations de Sécurité sous Linux"
 description: "Analyse technique complète de l'architecture Linux, de la gestion du système de fichiers, de l'identification des serveurs et de l'analyse des journaux (logs) dans le contexte d'un SOC."
 order: 4
-
 ---
 
 ## RÉSUMÉ DU MODULE

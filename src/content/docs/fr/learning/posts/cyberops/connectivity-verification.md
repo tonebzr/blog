@@ -1,6 +1,7 @@
 ---
 title: "Vérification de connectivité IPV4 IPV6"
 description: "Analyse technique avancée des types de messages ICMPv4 et ICMPv6, du fonctionnement des outils de diagnostic, et de l'intégration du Neighbor Discovery Protocol dans les frameworks de surveillance en cybersécurité."
+order: 7
 ---
 
 ## PRÉSENTATION DU MODULE
@@ -36,11 +37,11 @@ Chaque message ICMP contient trois champs d'en-tête communs : **Type**, **Code*
 
 ICMPv6 intègre le **NDP (RFC 4861)**, qui remplace et étend plusieurs protocoles IPv4, notamment ARP, ICMP Router Discovery et ICMP Redirect. NDP fonctionne sur ICMPv6 et utilise le **multicast** plutôt que le broadcast, ce qui réduit le trafic inutile sur le lien.
 
-- **Router Solicitation (RS) — Type 133** : Envoyé par les hôtes au démarrage pour localiser les routeurs IPv6 sur le lien local (envoyé à l'adresse multicast all-routers `FF02::2`).
-- **Router Advertisement (RA) — Type 134** : Envoyé périodiquement par les routeurs, ou en réponse aux RS, pour fournir les préfixes réseau, longueurs de préfixe, passerelle par défaut et indicateurs (Managed/Other) pour la configuration d'adresse. Envoyé à all-nodes multicast `FF02::1`.
-- **Neighbor Solicitation (NS) — Type 135** : Utilisé pour la résolution d'adresse couche 3 vers couche 2 (analogue à une requête ARP) et la **Duplicate Address Detection (DAD)**. Envoyé à l'adresse multicast solicited-node.
-- **Neighbor Advertisement (NA) — Type 136** : Envoyé en réponse à un message NS pour fournir l'adresse Link-Layer (MAC) de l'émetteur. Également envoyé de manière non sollicitée lorsqu'un nœud change d'adresse MAC.
-- **Redirect — Type 137** : Envoyé par les routeurs pour informer un hôte d'un meilleur premier saut vers une destination spécifique (similaire à l'ICMP Redirect IPv4, Type 5).
+- **Router Solicitation (RS)** : Envoyé par les hôtes au démarrage pour localiser les routeurs IPv6 sur le lien local (envoyé à l'adresse multicast all-routers `FF02::2`).
+- **Router Advertisement (RA)** : Envoyé périodiquement par les routeurs, ou en réponse aux RS, pour fournir les préfixes réseau, longueurs de préfixe, passerelle par défaut et indicateurs (Managed/Other) pour la configuration d'adresse. Envoyé à all-nodes multicast `FF02::1`.
+- **Neighbor Solicitation (NS)** : Utilisé pour la résolution d'adresse couche 3 vers couche 2 (analogue à une requête ARP) et la **Duplicate Address Detection (DAD)**. Envoyé à l'adresse multicast solicited-node.
+- **Neighbor Advertisement (NA)** : Envoyé en réponse à un message NS pour fournir l'adresse Link-Layer (MAC) de l'émetteur. Également envoyé de manière non sollicitée lorsqu'un nœud change d'adresse MAC.
+- **Redirect** : Envoyé par les routeurs pour informer un hôte d'un meilleur premier saut vers une destination spécifique (similaire à l'ICMP Redirect IPv4, Type 5).
 
 > 💡 **Distinction clé** : NDP utilise l'adressage **multicast**, pas le broadcast. C'est une différence fondamentale avec ARP (IPv4) qui utilise le broadcast.
 

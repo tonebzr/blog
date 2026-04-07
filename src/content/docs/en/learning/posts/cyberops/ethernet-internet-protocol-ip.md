@@ -1,6 +1,7 @@
 ---
 title: "Ethernet and IP Protocol Operations"
 description: "Fiche de révision complète pour l'examen CyberOps Cisco – Layer 2 (Ethernet) et Layer 3 (IP), champs de trames, adressage, routage et opérations sur les hôtes."
+order: 6
 ---
 
 ## MODULE OVERVIEW
@@ -17,6 +18,25 @@ Ethernet operates at the Data Link layer (OSI Layer 2) and the Physical layer, p
 * **MAC Address**: A **48-bit** physical address burned into the NIC by the manufacturer. It is globally unique and expressed in **12 hexadecimal digits** (4 bits per hex digit). It can be represented using dashes, colons, or periods.
 * **Unicast vs. Broadcast**: A **source** MAC address must always be a **unicast** address (identifying a single NIC). A **destination** address may be unicast, multicast, or broadcast.
 * **LLC Sublayer (IEEE 802.2)**: The Logical Link Control sublayer **communicates with upper-layer protocols**. It does NOT add the header/trailer (that is the MAC sublayer's job) and is NOT responsible for media access control.
+
+# Network Infrastructure: Layer 2 Sublayers (LLC vs MAC)
+
+| Feature | Logical Link Control (LLC) | Media Access Control (MAC) |
+| :--- | :--- | :--- |
+| **IEEE Standard** | **802.2** | **802.3** (Ethernet) / **802.11** (Wi-Fi) |
+| **Primary Role** | Software interface between L3 and L2. | Hardware interface between L2 and L1. |
+| **Core Functions** | Identifies the Network Layer protocol (Multiplexing). | Manages hardware addressing and media access. |
+| **Key Actions** | **Adds control information (SAPs)** to network data. | **Adds Header & Trailer (FCS)** to form the Frame. |
+| **Addressing** | Service Access Points (SAPs). | **Physical/Burned-in Addresses (MAC).** |
+| **Media Access** | Independent of the physical medium. | **Responsible for Media Access Control** (CSMA/CD/CA). |
+| **Implementation** | Handled by **NIC Driver Software**. | Handled by **NIC Hardware (ASIC/Controller)**. |
+
+---
+
+### CyberOps Expert Summary:
+* **LLC (The Liaison):** Acts as the bridge to the OS. It tells the receiver: "I have a packet for IPv4 inside this frame."
+* **MAC (The Mechanic):** Handles the "Dirty Work." It puts the data into a Frame, adds the Source/Dest MACs, and calculates the **FCS** (Cyclic Redundancy Check) to ensure the bits weren't scrambled on the wire.
+
 
 ### The Internet Protocol (Layer 3)
 The Network layer provides **end-to-end delivery** services. It encapsulates the **Transport layer (Layer 4) segment** into a packet. The primary protocols, **IPv4** and **IPv6**, share three fundamental characteristics:

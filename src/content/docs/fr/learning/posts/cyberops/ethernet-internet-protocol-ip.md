@@ -1,7 +1,7 @@
-
 ---
 title: "Opérations des protocoles Ethernet et IP"
 description: "Fiche de révision complète pour l'examen CyberOps Cisco – Couche 2 (Ethernet) et Couche 3 (IP), champs de trames, adressage, routage et opérations sur les hôtes."
+order: 6
 ---
 
 ## PRÉSENTATION DU MODULE
@@ -18,6 +18,24 @@ Ethernet opère à la couche Liaison de données (OSI Couche 2) et à la couche 
 * **Adresse MAC** : Adresse physique de **48 bits** gravée dans la carte réseau (NIC) par le fabricant. Elle est globalement unique et s'exprime en **12 chiffres hexadécimaux** (4 bits par chiffre hex). Elle peut être représentée avec des tirets, des deux-points ou des points.
 * **Unicast vs. Broadcast** : L'adresse MAC **source** doit toujours être une adresse **unicast** (identifiant une seule NIC). L'adresse de **destination** peut être unicast, multicast ou broadcast.
 * **Sous-couche LLC (IEEE 802.2)** : La sous-couche de contrôle de liaison logique **communique avec les protocoles des couches supérieures**. Elle n'ajoute PAS l'en-tête/trailer (c'est le rôle de la sous-couche MAC) et n'est PAS responsable du contrôle d'accès au média.
+
+# Network Infrastructure: Layer 2 Sublayers (LLC vs MAC)
+
+| Feature | Logical Link Control (LLC) | Media Access Control (MAC) |
+| :--- | :--- | :--- |
+| **IEEE Standard** | **802.2** | **802.3** (Ethernet) / **802.11** (Wi-Fi) |
+| **Primary Role** | Software interface between L3 and L2. | Hardware interface between L2 and L1. |
+| **Core Functions** | Identifies the Network Layer protocol (Multiplexing). | Manages hardware addressing and media access. |
+| **Key Actions** | **Adds control information (SAPs)** to network data. | **Adds Header & Trailer (FCS)** to form the Frame. |
+| **Addressing** | Service Access Points (SAPs). | **Physical/Burned-in Addresses (MAC).** |
+| **Media Access** | Independent of the physical medium. | **Responsible for Media Access Control** (CSMA/CD/CA). |
+| **Implementation** | Handled by **NIC Driver Software**. | Handled by **NIC Hardware (ASIC/Controller)**. |
+
+---
+
+### CyberOps Expert Summary:
+* **LLC (The Liaison):** Acts as the bridge to the OS. It tells the receiver: "I have a packet for IPv4 inside this frame."
+* **MAC (The Mechanic):** Handles the "Dirty Work." It puts the data into a Frame, adds the Source/Dest MACs, and calculates the **FCS** (Cyclic Redundancy Check) to ensure the bits weren't scrambled on the wire.
 
 ### Le protocole Internet (Couche 3)
 La couche Réseau assure des services de **livraison de bout en bout**. Elle encapsule le **segment de la couche Transport (Couche 4)** dans un paquet. Les protocoles principaux, **IPv4** et **IPv6**, partagent trois caractéristiques fondamentales :
