@@ -1,7 +1,7 @@
 ---
 title: "Opérations Ethernet Layer 2 et Analyse du Protocole de Résolution d'Adresses (ARP)"
 description: "Référence technique complète couvrant l'encapsulation des trames Ethernet II, les rôles fonctionnels des adresses MAC et IP, la mécanique opérationnelle de l'ARP, l'analyse de trafic sous Wireshark et les considérations de sécurité — programme CyberOps Associate."
-tags: [ARP, Ethernet, Layer 2, MAC, Wireshark, CyberOps, Sécurité Réseau]
+order: 8
 ---
 
 ## VUE D'ENSEMBLE DU MODULE

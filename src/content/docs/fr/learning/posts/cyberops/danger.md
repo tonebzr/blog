@@ -1,6 +1,6 @@
 ---
 title: "Analyse Avancée des Acteurs de Menaces et Vecteurs d'Attaque"
-description: "Module affiné couvrant la classification des acteurs de menaces, les mécanismes de diffusion de logiciels malveillants et les objectifs techniques de la cyberguerre et de l'exfiltration de données."
+description: "Classification des acteurs de menaces, des mécanismes de diffusion de logiciels malveillants, ainsi que des objectifs techniques de la cyberguerre et de l’exfiltration de données.."
 order: 1
 ---
 
