@@ -79,7 +79,7 @@ La taille minimale d'une trame Ethernet est de **64 octets** et la taille maxima
 | **Fragmentation** | Effectuée par les routeurs **ou** la source | Effectuée **uniquement par la source** |
 | **Espace d'adressage** | ~4,3 milliards | ~340 undécillions |
 
-![ipv4 frame field](../../../../../../assets/images/site/learning-cyops6-ehternet-frame-field.webp)
+![ipv4 frame field](../../../../../../assets/images/site/learning/cyops/learning-cyops6-ehternet-frame-field.webp)
 
 ---
 

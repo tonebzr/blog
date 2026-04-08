@@ -124,7 +124,7 @@ The **OSI Reference Model** and the **TCP/IP Protocol Model** provide a framewor
 
 > **Exam Focus:** The TCP/IP **Transport layer** and OSI **Layer 4** provide similar services and functions. The OSI **Application layer** (Layer 7) and the TCP/IP **Application layer** provide identical high-level functions. The TCP/IP **Internet layer** maps to OSI **Layer 3 (Network)** — not to the first three OSI layers.
 
-![osi vs tcp](../../../../../../assets/images/site/learning-cyops4-modele-osi-vs-tcp.webp)
+![osi vs tcp](../../../../../../assets/images/site/learning/cyops/learning-cyops4-modele-osi-vs-tcp.webp)
 
 ---
 
@@ -178,7 +178,7 @@ The **TCP/IP protocol suite** is the standard for the internet and modern data n
 
 > **Exam Focus:** ARP is classified at the **Network Access Layer (OSI Layer 2)**, not Layer 3, because its primary purpose is to discover the **MAC address** of a destination — a Layer 2 address. You may encounter documentation placing ARP at Layer 3; in this course, Layer 2 is the correct answer.
 
-![protocols](../../../../../../assets/images/site/learning-cyops4-protocols.webp)
+![protocols](../../../../../../assets/images/site/learning/cyops/learning-cyops4-protocols.webp)
 
 ---
 

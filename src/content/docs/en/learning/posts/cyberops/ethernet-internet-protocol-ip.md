@@ -62,7 +62,7 @@ The minimum Ethernet frame size is **64 bytes** and the maximum is **1518 bytes*
 | **Destination IP Address** | 32-bit address of the destination host. **Does not change** in transit (except with NAT). |
 | **Identification, Flags, Fragment Offset** | Used to **track and reassemble fragmented packets**. |
 
-![ipv4 frame field](../../../../../../assets/images/site/learning-cyops6-ehternet-frame-field.webp)
+![ipv4 frame field](../../../../../../assets/images/site/learning/cyops/learning-cyops6-ehternet-frame-field.webp)
 
 > **Exam tip — Header Checksum vs. FCS:**
 > * **Header Checksum** → detects corruption in the **IPv4 header** (Layer 3)

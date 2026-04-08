@@ -124,7 +124,7 @@ Le **Modèle de Référence OSI** et le **Modèle de Protocole TCP/IP** fourniss
 
 > **Focus Examen :** La couche **Transport TCP/IP** et la **couche OSI 4** fournissent des services et fonctions similaires. La couche **Application OSI** (couche 7) et la couche **Application TCP/IP** fournissent des fonctions de haut niveau identiques. La couche **Internet TCP/IP** correspond à la **couche OSI 3 (Réseau)** — et non aux trois premières couches OSI.
 
-![osi vs tcp](../../../../../../assets/images/site/learning-cyops4-modele-osi-vs-tcp.webp)
+![osi vs tcp](../../../../../../assets/images/site/learning/cyops/learning-cyops4-modele-osi-vs-tcp.webp)
 
 ---
 
@@ -178,7 +178,7 @@ La **suite de protocoles TCP/IP** est la norme pour internet et les réseaux de 
 
 > **Focus Examen :** L'ARP est classifié à la **Couche Accès Réseau (Couche OSI 2)**, et non à la couche 3, car son rôle principal est de découvrir l'**adresse MAC** d'une destination — une adresse de couche 2. Certaines documentations placent l'ARP en couche 3 ; dans ce cours, la couche 2 est la réponse correcte.
 
-![protocols](../../../../../../assets/images/site/learning-cyops4-protocols.webp)
+![protocols](../../../../../../assets/images/site/learning/cyops/learning-cyops4-protocols.webp)
 
 ---
 
