@@ -1,23 +1,9 @@
 ---
 title : Cadres de sécurité de l'information, modèles de contrôle d'accès et opérations AAA
-description : Un examen technique de la triade CIA (Cidre), de l'architecture Zero Trust, des diverses méthodologies de contrôle d'accès et de la mise en œuvre opérationnelle des protocoles AAA au sein des environnements réseaux d'entreprise.
+description : Un examen technique de la triade CIA, de l'architecture Zero Trust, des diverses méthodologies de contrôle d'accès et de la mise en œuvre opérationnelle des protocoles AAA au sein des environnements réseaux d'entreprise.
 order: 19
 ---
 
-## Table des matières
-
-1. [La Triade CIA](#1-la-triade-cia)
-2. [Sécurité Zero Trust](#2-sécurité-zero-trust)
-3. [Modèles de Contrôle d'Accès](#3-modèles-de-contrôle-daccès)
-4. [Principe du Moindre Privilège & Élévation de Privilèges](#4-principe-du-moindre-privilège--élévation-de-privilèges)
-5. [Cadre AAA](#5-cadre-aaa)
-6. [Méthodes d'Authentification AAA](#6-méthodes-dauthentification-aaa)
-7. [TACACS+ vs RADIUS](#7-tacacs-vs-radius)
-8. [Types de Comptabilité AAA](#8-types-de-comptabilité-aaa)
-9. [Concepts Clés – Référence Rapide](#9-concepts-clés--référence-rapide)
-10. [Questions de Révision](#10-questions-de-révision)
-
----
 
 ## 1. La Triade CIA
 
